@@ -33,6 +33,12 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
   });
 
+  app.get("/api/notes/:id", function (req, res) {
+    let serverNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    res.json(serverNotes[Number(req.params.id)]);
+  });
+
+
 // GET Route for homepage
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
