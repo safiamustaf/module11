@@ -16,6 +16,21 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
   });
 
+  // Create a new note
+  app.post("/api/notes", function (req, res) {
+    let serverNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let inNote = req.body;
+    let newId = savedNotes.length.toString();
+    inNote.id = newId;
+    serverNotes.push(inNote);
+  
+    fs.writeFileSync("./db/db.json", JSON.stringify(serverNotes));
+    console.log("Note saved to db.json ");
+    res.json(serverNotes);
+  });
+
+
+
 // GET Route for homepage
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
