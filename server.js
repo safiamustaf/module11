@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get("/notes", function (req, res) {
-    res.sendFile(path.join(dirname__, "public/notes.html"));
+    res.sendFile(path.join(__dirname, "public/notes.html"));
   });
 
 // GET Route for homepage
