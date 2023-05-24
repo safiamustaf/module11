@@ -29,7 +29,9 @@ app.get("/notes", function (req, res) {
     res.json(serverNotes);
   });
 
-
+  app.get("/api/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/db/db.json"));
+  });
 
 // GET Route for homepage
 app.get('/', (req, res) =>
